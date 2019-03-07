@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.sys.dao.StudentrecordDao">
+    
+	<sql id="studentrecordColumns">
+		a.id AS "id",
+		a.student_id AS "studentId",
+		a.name AS "name",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag",
+		a.score AS "score",
+		a.score_type AS "scoreType",
+		s.id AS "student.id",
+		s.name AS "student.name"
+	</sql>
+	
+	<sql id="studentrecordJoins">
+		LEFT JOIN student s ON s.no = a.student_id
+				LEFT JOIN classinfo c ON c.id = s.class_id
+		
+	</sql>
+    
+	<select id="get" resultType="Studentrecord">
+		SELECT 
+			<include refid="studentrecordColumns"/>
+		FROM studentrecord a
+		<include refid="studentrecordJoins"/>
+		WHERE a.id = #{id} and a.del_flag = '0' AND c.del_flag = '0' AND s.del_flag = '0'
+	</select>
+	
+	<select id="findListLimit" resultType="Studentrecord">
+		SELECT 
+			<include refid="studentrecordColumns"/>
+		FROM studentrecord a
+		<include refid="studentrecordJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL} AND c.del_flag = '0' AND s.del_flag = '0'
+			<if test="studentId != null and studentId != ''">
+				AND a.student_id = #{studentId}
+			</if>
+			ORDER BY a.update_date DESC limit 5
+		</where>
+	</select>
+	
+	<select id="findTotalCount" resultType="Integer">
+		SELECT count(id)
+		FROM studentrecord a
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+	</select>
+	
+	<select id="findList" resultType="Studentrecord">
+		SELECT 
+			<include refid="studentrecordColumns"/>
+		FROM studentrecord a
+		<include refid="studentrecordJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL} AND c.del_flag = '0' AND s.del_flag = '0'
+			<if test="studentId != null and studentId != ''">
+				AND a.student_id = #{studentId}
+			</if>
+			<if test="class_ids != null and class_ids != ''">
+				AND s.class_id in
+					<foreach item = "item" index = "index" open = "("  separator = "," close=")" collection = "class_ids">
+						#{item}
+					</foreach>
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="Studentrecord">
+		SELECT 
+			<include refid="studentrecordColumns"/>
+		FROM studentrecord a
+		<include refid="studentrecordJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL} AND c.del_flag = '0' AND s.del_flag = '0'
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO studentrecord(
+			id,
+			student_id,
+			name,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag,
+			score,
+			score_type
+		) VALUES (
+			#{id},
+			#{studentId},
+			#{name},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag},
+			#{score},
+			#{scoreType}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE studentrecord SET 	
+			student_id = #{studentId},
+			name = #{name},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks},
+			score = #{score},
+			score_type = #{scoreType}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE studentrecord SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
