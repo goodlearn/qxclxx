@@ -1,49 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thinkgem.jeesite.modules.sys.dao.ProfessioninfoDao">
+<mapper namespace="com.thinkgem.jeesite.modules.sys.dao.TwoShoeInfoDao">
     
-	<sql id="professioninfoColumns">
+	<sql id="twoShoeInfoColumns">
 		a.id AS "id",
-		a.name AS "name",
-		a.institute_id AS "instituteId",
+		a.xlh AS "xlh",
+		a.hwlx AS "hwlx",
+		a.ltxh AS "ltxh",
+		a.xfcs AS "xfcs",
+		a.sysj AS "sysj",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS "delFlag",
-		i.id AS "institute.id",
-		i.name AS "institute.name"
+		a.del_flag AS "delFlag"
 	</sql>
 	
-	<sql id="professioninfoJoins">
-		LEFT JOIN institute i ON i.id = a.institute_id
+	<sql id="twoShoeInfoJoins">
 	</sql>
     
-	<select id="get" resultType="Professioninfo">
+	<select id="get" resultType="TwoShoeInfo">
 		SELECT 
-			<include refid="professioninfoColumns"/>
-		FROM professioninfo a
-		<include refid="professioninfoJoins"/>
+			<include refid="twoShoeInfoColumns"/>
+		FROM two_shoe_info a
+		<include refid="twoShoeInfoJoins"/>
 		WHERE a.id = #{id}
 	</select>
 	
-	<select id="findList" resultType="Professioninfo">
+	<select id="findList" resultType="TwoShoeInfo">
 		SELECT 
-			<include refid="professioninfoColumns"/>
-		FROM professioninfo a
-		<include refid="professioninfoJoins"/>
+			<include refid="twoShoeInfoColumns"/>
+		FROM two_shoe_info a
+		<include refid="twoShoeInfoJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="name != null and name != ''">
-				AND a.name LIKE 
-					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
-			</if>
-			<if test="instituteId != null and instituteId != ''">
-				AND a.institute_id = #{instituteId}
-			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -55,11 +46,11 @@
 		</choose>
 	</select>
 	
-	<select id="findAllList" resultType="Professioninfo">
+	<select id="findAllList" resultType="TwoShoeInfo">
 		SELECT 
-			<include refid="professioninfoColumns"/>
-		FROM professioninfo a
-		<include refid="professioninfoJoins"/>
+			<include refid="twoShoeInfoColumns"/>
+		FROM two_shoe_info a
+		<include refid="twoShoeInfoJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 		</where>		
@@ -74,10 +65,13 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO professioninfo(
+		INSERT INTO two_shoe_info(
 			id,
-			name,
-			institute_id,
+			xlh,
+			hwlx,
+			ltxh,
+			xfcs,
+			sysj,
 			create_by,
 			create_date,
 			update_by,
@@ -86,8 +80,11 @@
 			del_flag
 		) VALUES (
 			#{id},
-			#{name},
-			#{instituteId},
+			#{xlh},
+			#{hwlx},
+			#{ltxh},
+			#{xfcs},
+			#{sysj},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
@@ -98,9 +95,12 @@
 	</insert>
 	
 	<update id="update">
-		UPDATE professioninfo SET 	
-			name = #{name},
-			institute_id = #{instituteId},
+		UPDATE two_shoe_info SET 	
+			xlh = #{xlh},
+			hwlx = #{hwlx},
+			ltxh = #{ltxh},
+			xfcs = #{xfcs},
+			sysj = #{sysj},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
 			remarks = #{remarks}
@@ -108,7 +108,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE professioninfo SET 
+		UPDATE two_shoe_info SET 
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>

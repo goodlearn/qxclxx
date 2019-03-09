@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.sys.dao.CarInfoDao">
+    
+	<sql id="carInfoColumns">
+		a.id AS "id",
+		a.motorcycle_type AS "motorcycleType",
+		a.seria_number AS "seriaNumber",
+		a.input_time AS "inputTime",
+		a.run_date AS "runDate",
+		a.charter_id AS "charterId",
+		a.engine_paramter_id AS "engineParamterId",
+		a.main_dynamo_paramter_id AS "mainDynamoParamterId",
+		a.left_motor_wheel_paramter_id AS "leftMotorWheelParamterId",
+		a.right_motor_wheel_paramter_id AS "rightMotorWheelParamterId",
+		a.box_bucket_paramter_id AS "boxBucketParamterId",
+		a.one_shoe_id AS "oneShoeId",
+		a.two_shoe_id AS "twoShoeId",
+		a.three_shoe_id AS "threeShoeId",
+		a.four_shoe_id AS "fourShoeId",
+		a.five_shoe_id AS "fiveShoeId",
+		a.six_shoe_id AS "sixShoeId",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="carInfoJoins">
+	</sql>
+    
+	<select id="get" resultType="CarInfo">
+		SELECT 
+			<include refid="carInfoColumns"/>
+		FROM car_info a
+		<include refid="carInfoJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CarInfo">
+		SELECT 
+			<include refid="carInfoColumns"/>
+		FROM car_info a
+		<include refid="carInfoJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CarInfo">
+		SELECT 
+			<include refid="carInfoColumns"/>
+		FROM car_info a
+		<include refid="carInfoJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO car_info(
+			id,
+			motorcycle_type,
+			seria_number,
+			input_time,
+			run_date,
+			charter_id,
+			engine_paramter_id,
+			main_dynamo_paramter_id,
+			left_motor_wheel_paramter_id,
+			right_motor_wheel_paramter_id,
+			box_bucket_paramter_id,
+			one_shoe_id,
+			two_shoe_id,
+			three_shoe_id,
+			four_shoe_id,
+			five_shoe_id,
+			six_shoe_id,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{motorcycleType},
+			#{seriaNumber},
+			#{inputTime},
+			#{runDate},
+			#{charterId},
+			#{engineParamterId},
+			#{mainDynamoParamterId},
+			#{leftMotorWheelParamterId},
+			#{rightMotorWheelParamterId},
+			#{boxBucketParamterId},
+			#{oneShoeId},
+			#{twoShoeId},
+			#{threeShoeId},
+			#{fourShoeId},
+			#{fiveShoeId},
+			#{sixShoeId},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE car_info SET 	
+			motorcycle_type = #{motorcycleType},
+			seria_number = #{seriaNumber},
+			input_time = #{inputTime},
+			run_date = #{runDate},
+			charter_id = #{charterId},
+			engine_paramter_id = #{engineParamterId},
+			main_dynamo_paramter_id = #{mainDynamoParamterId},
+			left_motor_wheel_paramter_id = #{leftMotorWheelParamterId},
+			right_motor_wheel_paramter_id = #{rightMotorWheelParamterId},
+			box_bucket_paramter_id = #{boxBucketParamterId},
+			one_shoe_id = #{oneShoeId},
+			two_shoe_id = #{twoShoeId},
+			three_shoe_id = #{threeShoeId},
+			four_shoe_id = #{fourShoeId},
+			five_shoe_id = #{fiveShoeId},
+			six_shoe_id = #{sixShoeId},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE car_info SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

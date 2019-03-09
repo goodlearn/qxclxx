@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thinkgem.jeesite.modules.sys.dao.AttendanceDao">
+<mapper namespace="com.thinkgem.jeesite.modules.sys.dao.CharterInfoDao">
     
-	<sql id="attendanceColumns">
+	<sql id="charterInfoColumns">
 		a.id AS "id",
-		a.machine_id AS "machineId",
-		a.no AS "no",
+		a.profession AS "profession",
 		a.name AS "name",
-		a.record_date AS "recordDate",
+		a.contact AS "contact",
+		a.charter_id AS "charterId",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
@@ -16,35 +16,29 @@
 		a.del_flag AS "delFlag"
 	</sql>
 	
-	<sql id="attendanceJoins">
+	<sql id="charterInfoJoins">
 	</sql>
     
-	<select id="get" resultType="Attendance">
+	<select id="get" resultType="CharterInfo">
 		SELECT 
-			<include refid="attendanceColumns"/>
-		FROM attendance a
-		<include refid="attendanceJoins"/>
+			<include refid="charterInfoColumns"/>
+		FROM charter_info a
+		<include refid="charterInfoJoins"/>
 		WHERE a.id = #{id}
 	</select>
 	
-	<select id="findList" resultType="Attendance">
+	<select id="findList" resultType="CharterInfo">
 		SELECT 
-			<include refid="attendanceColumns"/>
-		FROM attendance a
-		<include refid="attendanceJoins"/>
+			<include refid="charterInfoColumns"/>
+		FROM charter_info a
+		<include refid="charterInfoJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="no != null and no != ''">
-				AND a.no = #{no}
-			</if>
 			<if test="name != null and name != ''">
 				AND a.name LIKE 
 					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
-			</if>
-			<if test="beginRecordDate != null and endRecordDate != null and beginRecordDate != '' and endRecordDate != ''">
-				AND a.record_date BETWEEN #{beginRecordDate} AND #{endRecordDate}
 			</if>
 		</where>
 		<choose>
@@ -52,16 +46,16 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.record_date DESC
+				ORDER BY a.update_date DESC
 			</otherwise>
 		</choose>
 	</select>
 	
-	<select id="findAllList" resultType="Attendance">
+	<select id="findAllList" resultType="CharterInfo">
 		SELECT 
-			<include refid="attendanceColumns"/>
-		FROM attendance a
-		<include refid="attendanceJoins"/>
+			<include refid="charterInfoColumns"/>
+		FROM charter_info a
+		<include refid="charterInfoJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 		</where>		
@@ -76,12 +70,12 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO attendance(
+		INSERT INTO charter_info(
 			id,
-			machine_id,
-			no,
+			profession,
 			name,
-			record_date,
+			contact,
+			charter_id,
 			create_by,
 			create_date,
 			update_by,
@@ -90,10 +84,10 @@
 			del_flag
 		) VALUES (
 			#{id},
-			#{machineId},
-			#{no},
+			#{profession},
 			#{name},
-			#{recordDate},
+			#{contact},
+			#{charterId},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
@@ -104,11 +98,11 @@
 	</insert>
 	
 	<update id="update">
-		UPDATE attendance SET 	
-			machine_id = #{machineId},
-			no = #{no},
+		UPDATE charter_info SET 	
+			profession = #{profession},
 			name = #{name},
-			record_date = #{recordDate},
+			contact = #{contact},
+			charter_id = #{charterId},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
 			remarks = #{remarks}
@@ -116,7 +110,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE attendance SET 
+		UPDATE charter_info SET 
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>

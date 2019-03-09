@@ -1,52 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thinkgem.jeesite.modules.sys.dao.ClasspriceDao">
+<mapper namespace="com.thinkgem.jeesite.modules.sys.dao.FourShoeInfoDao">
     
-	<sql id="classpriceColumns">
+	<sql id="fourShoeInfoColumns">
 		a.id AS "id",
-		a.class_id AS "classId",
-		a.score AS "score",
+		a.xlh AS "xlh",
+		a.hwlx AS "hwlx",
+		a.ltxh AS "ltxh",
+		a.xfcs AS "xfcs",
+		a.sysj AS "sysj",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS "delFlag",
-		cl.id AS "classInfo.id",
-		cl.name AS "classInfo.name"
+		a.del_flag AS "delFlag"
 	</sql>
 	
-	<sql id="classpriceJoins">
-		LEFT JOIN classinfo cl ON cl.id = a.class_id
+	<sql id="fourShoeInfoJoins">
 	</sql>
     
-	<select id="get" resultType="Classprice">
+	<select id="get" resultType="FourShoeInfo">
 		SELECT 
-			<include refid="classpriceColumns"/>
-		FROM classprice a
-		<include refid="classpriceJoins"/>
+			<include refid="fourShoeInfoColumns"/>
+		FROM four_shoe_info a
+		<include refid="fourShoeInfoJoins"/>
 		WHERE a.id = #{id}
 	</select>
 	
-	<select id="findList" resultType="Classprice">
+	<select id="findList" resultType="FourShoeInfo">
 		SELECT 
-			<include refid="classpriceColumns"/>
-		FROM classprice a
-		<include refid="classpriceJoins"/>
+			<include refid="fourShoeInfoColumns"/>
+		FROM four_shoe_info a
+		<include refid="fourShoeInfoJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="classId != null and classId != ''">
-				AND a.class_id = #{classId}
-			</if>
-			<if test="score != null and score != ''">
-				AND a.score &lt;= #{score}
-			</if>
-			<if test="class_ids != null and class_ids != ''">
-				AND a.class_id in
-					<foreach item = "item" index = "index" open = "("  separator = "," close=")" collection = "class_ids">
-						#{item}
-					</foreach>
-			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -58,11 +46,11 @@
 		</choose>
 	</select>
 	
-	<select id="findAllList" resultType="Classprice">
+	<select id="findAllList" resultType="FourShoeInfo">
 		SELECT 
-			<include refid="classpriceColumns"/>
-		FROM classprice a
-		<include refid="classpriceJoins"/>
+			<include refid="fourShoeInfoColumns"/>
+		FROM four_shoe_info a
+		<include refid="fourShoeInfoJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 		</where>		
@@ -77,10 +65,13 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO classprice(
+		INSERT INTO four_shoe_info(
 			id,
-			class_id,
-			score,
+			xlh,
+			hwlx,
+			ltxh,
+			xfcs,
+			sysj,
 			create_by,
 			create_date,
 			update_by,
@@ -89,8 +80,11 @@
 			del_flag
 		) VALUES (
 			#{id},
-			#{classId},
-			#{score},
+			#{xlh},
+			#{hwlx},
+			#{ltxh},
+			#{xfcs},
+			#{sysj},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
@@ -101,9 +95,12 @@
 	</insert>
 	
 	<update id="update">
-		UPDATE classprice SET 	
-			class_id = #{classId},
-			score = #{score},
+		UPDATE four_shoe_info SET 	
+			xlh = #{xlh},
+			hwlx = #{hwlx},
+			ltxh = #{ltxh},
+			xfcs = #{xfcs},
+			sysj = #{sysj},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
 			remarks = #{remarks}
@@ -111,7 +108,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE classprice SET 
+		UPDATE four_shoe_info SET 
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
