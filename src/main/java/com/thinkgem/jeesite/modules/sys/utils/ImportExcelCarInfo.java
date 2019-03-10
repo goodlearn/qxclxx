@@ -1,35 +1,28 @@
-package com.thinkgem.jeesite.common.test;
+package com.thinkgem.jeesite.modules.sys.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
-
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.thinkgem.jeesite.common.utils.IdGen;
@@ -47,67 +40,23 @@ import com.thinkgem.jeesite.modules.sys.entity.SixShoeInfo;
 import com.thinkgem.jeesite.modules.sys.entity.ThreeShoeInfo;
 import com.thinkgem.jeesite.modules.sys.entity.TwoShoeInfo;
 
-
 /**
 * @author wzy
-* @version 创建时间：2019年3月10日 下午5:49:46
+* @version 创建时间：2019年3月10日 下午9:06:41
 * @ClassName 类名称
 * @Description 类描述
 */
-public class ImportFileTest {
-	
+public class ImportExcelCarInfo {
 	private static List<CarInfo> carInfoList = new ArrayList<CarInfo>();
 	
 	private static List<CharterInfo> charterInfos = new ArrayList<CharterInfo>();
 
-	public static void main(String[] args) {
-		try {
-			int sheetIndex = 0;
-			int headerNum = 0;
-			String path = "C:\\Users\\wzy\\Desktop\\杂\\template.xls";
-			
-			ArrayList<Map<String,String>> result = readExcelToObj(path);
-//	        ArrayList<Map<String,String>> result = excelUtil.readExcelToObj("C:\\Users\\handsome\\Desktop\\软文excel\\表\\表\\稿件付费媒体投放链接---上传表.xlsx");
-	       /* for(Map<String,String> map:result){
-	            System.out.println(map);
-	        }*/
-			/*File file = new File(path);
-			InputStream is = new FileInputStream(file);
-			String fileName = file.getName();
-			Workbook wb;
-			if(fileName.toLowerCase().endsWith("xls")){  
-				System.out.println("xls is ");
-				wb = new HSSFWorkbook(is);    
-	        }else if(fileName.toLowerCase().endsWith("xlsx")){  
-	        	wb = new XSSFWorkbook(is);
-	        }else{  
-	        	return;
-	        }  
-			if (wb.getNumberOfSheets()<sheetIndex){
-				throw new RuntimeException("文档中没有工作表!");
-			}
-			Sheet sheet = wb.getSheetAt(sheetIndex);
-			for (int i = (headerNum+1); i < (sheet.getLastRowNum()+headerNum); i++) {
-				Row row = sheet.getRow(i);
-				System.out.println("row is "+i);
-				for(int column=0;column<row.getLastCellNum();column++) {
-					String val = getMergedRegionValue(sheet,i, column);
-					System.out.println("val is "+val);
-				}
-			//	StringBuilder sb = new StringBuilder();
-				
-			}*/
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	
 	 /**
      * 读取excel数据
      * @param path
      */
-    private static ArrayList<Map<String,String>> readExcelToObj(String path) {
+    private  ArrayList<Map<String,String>> readExcelToObj(String path) {
 
         Workbook wb = null;
         ArrayList<Map<String,String>> result = null;
@@ -123,6 +72,43 @@ public class ImportFileTest {
         return result;
     }
     
+    public void inputstreamtofile(InputStream ins,File file){
+    	OutputStream os;
+		try {
+			os = new FileOutputStream(file);
+			int bytesRead = 0;
+    	    byte[] buffer = new byte[8192];
+    	    while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
+    	       os.write(buffer, 0, bytesRead);
+    	    }
+    	    os.close();
+    	    ins.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	 
+    }
+    
+    /**
+     * 读取excel数据
+     * @param path
+     */
+    public  ArrayList<Map<String,String>> readExcelToObj(MultipartFile file) {
+
+        Workbook wb = null;
+        ArrayList<Map<String,String>> result = null;
+        try {
+        	InputStream is = file.getInputStream();
+            wb = WorkbookFactory.create(is);
+            result = readExcel(wb, 0, 2, 0);
+            result = readExcel(wb, 1, 2, 0);
+        } catch (InvalidFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
 
     /**
@@ -132,7 +118,7 @@ public class ImportFileTest {
      * @param startReadLine 开始读取的行:从0开始
      * @param tailLine 去除最后读取的行
      */
-    private static ArrayList<Map<String,String>> readExcel(Workbook wb,int sheetIndex, int startReadLine, int tailLine) {
+    private ArrayList<Map<String,String>> readExcel(Workbook wb,int sheetIndex, int startReadLine, int tailLine) {
         Sheet sheet = wb.getSheetAt(sheetIndex);
         Row row = null;
         ArrayList<Map<String,String>> result = new ArrayList<Map<String,String>>();
@@ -217,11 +203,9 @@ public class ImportFileTest {
 
     }
     
-    private static void setSheetIndexTwoData(String returnStr,Cell c,CarInfo carinfo) {
-    	List<CharterInfo> charterInfos = carinfo.getCharterInfos();
-    }
+
     
-    private static void setData(String returnStr,Cell c,CarInfo carinfo) {
+    private void setData(String returnStr,Cell c,CarInfo carinfo) {
     	EngineInfo engineInfo = carinfo.getEngineInfo();//发动机
     	MainDynamoInfo mainDynamoInfo = carinfo.getMainDynamoInfo();//主发动机
     	LeftMotorWheelInfo leftMonotrwheelInfo = carinfo.getLeftMonotrwheelInfo();//左侧电动轮主要参数
@@ -382,7 +366,7 @@ public class ImportFileTest {
      * @param column
      * @return
      */
-    public static String getMergedRegionValue(Sheet sheet ,int row , int column){
+    public String getMergedRegionValue(Sheet sheet ,int row , int column){
         int sheetMergeCount = sheet.getNumMergedRegions();
 
         for(int i = 0 ; i < sheetMergeCount ; i++){
@@ -436,7 +420,7 @@ public class ImportFileTest {
      * @param column 列下标
      * @return
      */
-    private static boolean isMergedRegion(Sheet sheet,int row ,int column) {
+    private boolean isMergedRegion(Sheet sheet,int row ,int column) {
         int sheetMergeCount = sheet.getNumMergedRegions();
         for (int i = 0; i < sheetMergeCount; i++) {
             CellRangeAddress range = sheet.getMergedRegion(i);
@@ -505,7 +489,7 @@ public class ImportFileTest {
     /**
      * 从excel读取内容
      */
-    public static void readContent(String fileName)  {
+    public void readContent(String fileName)  {
         boolean isE2007 = false;    //判断是否是excel2007格式
         if(fileName.endsWith("xlsx"))
             isE2007 = true;
@@ -557,7 +541,7 @@ public class ImportFileTest {
 	 * @param column 获取单元格列号
 	 * @return 单元格值
 	 */
-	public static Object getCellValue(Row row, int column){
+	public Object getCellValue(Row row, int column){
 		Object val = "";
 		try{
 			Cell cell = row.getCell(column);
@@ -579,5 +563,4 @@ public class ImportFileTest {
 		}
 		return val;
 	}
-	
 }

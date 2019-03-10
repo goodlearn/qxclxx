@@ -16,7 +16,17 @@ public class CharterInfo extends DataEntity<CharterInfo> {
 	private String name;		// 姓名
 	private String contact;		// 联系方式
 	private String charterId;		// 归属包机
+	//临时
+	private CarInfo carInfo;
 	
+	public CarInfo getCarInfo() {
+		return carInfo;
+	}
+
+	public void setCarInfo(CarInfo carInfo) {
+		this.carInfo = carInfo;
+	}
+
 	public CharterInfo() {
 		super();
 	}

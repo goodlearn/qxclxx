@@ -24,6 +24,7 @@ import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.common.utils.excel.ImportExcel;
 import com.thinkgem.jeesite.modules.sys.entity.CarInfo;
 import com.thinkgem.jeesite.modules.sys.service.CarInfoService;
+import com.thinkgem.jeesite.modules.sys.utils.ImportExcelCarInfo;
 
 /**
  * 车辆信息Controller
@@ -109,7 +110,8 @@ public class CarInfoController extends BaseController {
 			return "redirect:"+Global.getAdminPath()+"/sys/carInfo/?repage";
 		}
 		try {
-			ImportExcel ei = new ImportExcel(file, 1, 0);
+			ImportExcelCarInfo ieci = new ImportExcelCarInfo(); 
+			ieci.readExcelToObj(file);
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
