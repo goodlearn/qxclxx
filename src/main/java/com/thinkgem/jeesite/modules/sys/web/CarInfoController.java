@@ -112,6 +112,7 @@ public class CarInfoController extends BaseController {
 		try {
 			ImportExcelCarInfo ieci = new ImportExcelCarInfo(); 
 			ieci.readExcelToObj(file);
+			carInfoService.processExcel(ieci.getCarInfoList(), ieci.getCharterInfos());
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}

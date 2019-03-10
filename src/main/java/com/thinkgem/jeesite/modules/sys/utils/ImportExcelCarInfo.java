@@ -52,7 +52,23 @@ public class ImportExcelCarInfo {
 	private static List<CharterInfo> charterInfos = new ArrayList<CharterInfo>();
 
 	
-	 /**
+	 public static List<CarInfo> getCarInfoList() {
+		return carInfoList;
+	}
+
+	public static void setCarInfoList(List<CarInfo> carInfoList) {
+		ImportExcelCarInfo.carInfoList = carInfoList;
+	}
+
+	public static List<CharterInfo> getCharterInfos() {
+		return charterInfos;
+	}
+
+	public static void setCharterInfos(List<CharterInfo> charterInfos) {
+		ImportExcelCarInfo.charterInfos = charterInfos;
+	}
+
+	/**
      * 读取excel数据
      * @param path
      */
