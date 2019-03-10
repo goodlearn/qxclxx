@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 2#轮胎主要参数Entity
  * @author wzy
- * @version 2019-03-09
+ * @version 2019-03-10
  */
 public class TwoShoeInfo extends DataEntity<TwoShoeInfo> {
 	

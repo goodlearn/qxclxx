@@ -35,6 +35,9 @@
 		<include refid="fourShoeInfoJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="xlh != null and xlh != ''">
+				AND a.xlh = #{xlh}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">

@@ -46,6 +46,12 @@
 		<include refid="carInfoJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="motorcycleType != null and motorcycleType != ''">
+				AND a.motorcycle_type = #{motorcycleType}
+			</if>
+			<if test="seriaNumber != null and seriaNumber != ''">
+				AND a.seria_number = #{seriaNumber}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">

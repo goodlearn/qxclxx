@@ -25,8 +25,17 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
+			<li><label>工种：</label>
+				<form:input path="profession" htmlEscape="false" maxlength="100" class="input-medium"/>
+			</li>
 			<li><label>姓名：</label>
 				<form:input path="name" htmlEscape="false" maxlength="100" class="input-medium"/>
+			</li>
+			<li><label>联系方式：</label>
+				<form:input path="contact" htmlEscape="false" maxlength="100" class="input-medium"/>
+			</li>
+			<li><label>归属包机：</label>
+				<form:input path="charterId" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
@@ -36,7 +45,10 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>工种</th>
 				<th>姓名</th>
+				<th>联系方式</th>
+				<th>归属包机</th>
 				<th>更新时间</th>
 				<th>备注信息</th>
 				<shiro:hasPermission name="sys:charterInfo:edit"><th>操作</th></shiro:hasPermission>
@@ -46,8 +58,17 @@
 		<c:forEach items="${page.list}" var="charterInfo">
 			<tr>
 				<td><a href="${ctx}/sys/charterInfo/form?id=${charterInfo.id}">
-					${charterInfo.name}
+					${charterInfo.profession}
 				</a></td>
+				<td>
+					${charterInfo.name}
+				</td>
+				<td>
+					${charterInfo.contact}
+				</td>
+				<td>
+					${charterInfo.charterId}
+				</td>
 				<td>
 					<fmt:formatDate value="${charterInfo.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>

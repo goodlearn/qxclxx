@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.modules.sys.dao.SixShoeInfoDao;
 /**
  * 6#轮胎主要参数Service
  * @author wzy
- * @version 2019-03-09
+ * @version 2019-03-10
  */
 @Service
 @Transactional(readOnly = true)

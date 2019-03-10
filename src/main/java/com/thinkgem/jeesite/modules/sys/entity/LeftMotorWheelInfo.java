@@ -8,9 +8,9 @@ import org.hibernate.validator.constraints.Length;
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
 /**
- * 主发电机主要参数Entity
+ * 左侧电动轮主要参数Entity
  * @author wzy
- * @version 2019-03-09
+ * @version 2019-03-10
  */
 public class LeftMotorWheelInfo extends DataEntity<LeftMotorWheelInfo> {
 	

@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 车辆信息Entity
  * @author wzy
- * @version 2019-03-09
+ * @version 2019-03-10
  */
 public class CarInfo extends DataEntity<CarInfo> {
 	

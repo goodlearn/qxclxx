@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.sys.entity.MainDynamoInfo;
 /**
  * 主发电机主要参数DAO接口
  * @author wzy
- * @version 2019-03-09
+ * @version 2019-03-10
  */
 @MyBatisDao
 public interface MainDynamoInfoDao extends CrudDao<MainDynamoInfo> {

@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.sys.entity.CarInfo;
 /**
  * 车辆信息DAO接口
  * @author wzy
- * @version 2019-03-09
+ * @version 2019-03-10
  */
 @MyBatisDao
 public interface CarInfoDao extends CrudDao<CarInfo> {

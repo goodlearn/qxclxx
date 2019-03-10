@@ -23,9 +23,9 @@ import com.thinkgem.jeesite.modules.sys.entity.LeftMotorWheelInfo;
 import com.thinkgem.jeesite.modules.sys.service.LeftMotorWheelInfoService;
 
 /**
- * 主发电机主要参数Controller
+ * 左侧电动轮主要参数Controller
  * @author wzy
- * @version 2019-03-09
+ * @version 2019-03-10
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/leftMotorWheelInfo")
@@ -68,7 +68,7 @@ public class LeftMotorWheelInfoController extends BaseController {
 			return form(leftMotorWheelInfo, model);
 		}
 		leftMotorWheelInfoService.save(leftMotorWheelInfo);
-		addMessage(redirectAttributes, "保存主发电机主要参数成功");
+		addMessage(redirectAttributes, "保存左侧电动轮主要参数成功");
 		return "redirect:"+Global.getAdminPath()+"/sys/leftMotorWheelInfo/?repage";
 	}
 	
@@ -76,7 +76,7 @@ public class LeftMotorWheelInfoController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(LeftMotorWheelInfo leftMotorWheelInfo, RedirectAttributes redirectAttributes) {
 		leftMotorWheelInfoService.delete(leftMotorWheelInfo);
-		addMessage(redirectAttributes, "删除主发电机主要参数成功");
+		addMessage(redirectAttributes, "删除左侧电动轮主要参数成功");
 		return "redirect:"+Global.getAdminPath()+"/sys/leftMotorWheelInfo/?repage";
 	}
 

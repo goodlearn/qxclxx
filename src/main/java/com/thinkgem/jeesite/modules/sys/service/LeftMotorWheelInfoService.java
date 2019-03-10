@@ -14,9 +14,9 @@ import com.thinkgem.jeesite.modules.sys.entity.LeftMotorWheelInfo;
 import com.thinkgem.jeesite.modules.sys.dao.LeftMotorWheelInfoDao;
 
 /**
- * 主发电机主要参数Service
+ * 左侧电动轮主要参数Service
  * @author wzy
- * @version 2019-03-09
+ * @version 2019-03-10
  */
 @Service
 @Transactional(readOnly = true)

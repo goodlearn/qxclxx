@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.modules.sys.service.CharterInfoService;
 /**
  * 包机负责人信息Controller
  * @author wzy
- * @version 2019-03-09
+ * @version 2019-03-10
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/charterInfo")

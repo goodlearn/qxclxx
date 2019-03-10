@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 右侧电动轮主要参数Entity
  * @author wzy
- * @version 2019-03-09
+ * @version 2019-03-10
  */
 public class RightMotorWheelInfo extends DataEntity<RightMotorWheelInfo> {
 	

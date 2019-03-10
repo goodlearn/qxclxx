@@ -25,6 +25,9 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
+			<li><label>序列号：</label>
+				<form:input path="xlh" htmlEscape="false" maxlength="100" class="input-medium"/>
+			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
@@ -33,6 +36,10 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>序列号</th>
+				<th>花纹类型</th>
+				<th>轮胎型号</th>
+				<th>修复次数</th>
 				<th>更新时间</th>
 				<th>备注信息</th>
 				<shiro:hasPermission name="sys:sixShoeInfo:edit"><th>操作</th></shiro:hasPermission>
@@ -42,8 +49,20 @@
 		<c:forEach items="${page.list}" var="sixShoeInfo">
 			<tr>
 				<td><a href="${ctx}/sys/sixShoeInfo/form?id=${sixShoeInfo.id}">
-					<fmt:formatDate value="${sixShoeInfo.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					${sixShoeInfo.xlh}
 				</a></td>
+				<td>
+					${sixShoeInfo.hwlx}
+				</td>
+				<td>
+					${sixShoeInfo.ltxh}
+				</td>
+				<td>
+					${sixShoeInfo.xfcs}
+				</td>
+				<td>
+					<fmt:formatDate value="${sixShoeInfo.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+				</td>
 				<td>
 					${sixShoeInfo.remarks}
 				</td>

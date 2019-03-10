@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>主发电机主要参数管理</title>
+	<title>左侧电动轮主要参数管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,8 +27,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/sys/leftMotorWheelInfo/">主发电机主要参数列表</a></li>
-		<li class="active"><a href="${ctx}/sys/leftMotorWheelInfo/form?id=${leftMotorWheelInfo.id}">主发电机主要参数<shiro:hasPermission name="sys:leftMotorWheelInfo:edit">${not empty leftMotorWheelInfo.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:leftMotorWheelInfo:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/sys/leftMotorWheelInfo/">左侧电动轮主要参数列表</a></li>
+		<li class="active"><a href="${ctx}/sys/leftMotorWheelInfo/form?id=${leftMotorWheelInfo.id}">左侧电动轮主要参数<shiro:hasPermission name="sys:leftMotorWheelInfo:edit">${not empty leftMotorWheelInfo.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:leftMotorWheelInfo:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="leftMotorWheelInfo" action="${ctx}/sys/leftMotorWheelInfo/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

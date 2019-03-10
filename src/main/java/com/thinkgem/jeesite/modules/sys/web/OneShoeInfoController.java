@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.modules.sys.service.OneShoeInfoService;
 /**
  * 1#轮胎主要参数Controller
  * @author wzy
- * @version 2019-03-09
+ * @version 2019-03-10
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/oneShoeInfo")

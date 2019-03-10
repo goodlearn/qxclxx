@@ -37,6 +37,9 @@
 		<include refid="leftMotorWheelInfoJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="zcjxlh != null and zcjxlh != ''">
+				AND a.zcjxlh = #{zcjxlh}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">

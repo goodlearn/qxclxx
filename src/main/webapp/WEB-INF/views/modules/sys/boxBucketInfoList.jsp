@@ -25,6 +25,9 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
+			<li><label>总成件序号：</label>
+				<form:input path="zcjxlh" htmlEscape="false" maxlength="100" class="input-medium"/>
+			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
@@ -33,6 +36,13 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>总成件序列号</th>
+				<th>已维修次数</th>
+				<th>质保小时</th>
+				<th>目前使用小时</th>
+				<th>维修厂家</th>
+				<th>维修原因</th>
+				<th>本轮投入使用日期</th>
 				<th>更新时间</th>
 				<th>备注信息</th>
 				<shiro:hasPermission name="sys:boxBucketInfo:edit"><th>操作</th></shiro:hasPermission>
@@ -42,8 +52,29 @@
 		<c:forEach items="${page.list}" var="boxBucketInfo">
 			<tr>
 				<td><a href="${ctx}/sys/boxBucketInfo/form?id=${boxBucketInfo.id}">
-					<fmt:formatDate value="${boxBucketInfo.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					${boxBucketInfo.zcjxlh}
 				</a></td>
+				<td>
+					${boxBucketInfo.ywxcs}
+				</td>
+				<td>
+					${boxBucketInfo.zbxs}
+				</td>
+				<td>
+					${boxBucketInfo.mqsyxs}
+				</td>
+				<td>
+					${boxBucketInfo.wxcj}
+				</td>
+				<td>
+					${boxBucketInfo.wxyy}
+				</td>
+				<td>
+					${boxBucketInfo.bltrsyrq}
+				</td>
+				<td>
+					<fmt:formatDate value="${boxBucketInfo.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+				</td>
 				<td>
 					${boxBucketInfo.remarks}
 				</td>
