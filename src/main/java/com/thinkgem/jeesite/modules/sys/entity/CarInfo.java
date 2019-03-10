@@ -1,7 +1,7 @@
-/**
- * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
- */
 package com.thinkgem.jeesite.modules.sys.entity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -32,6 +32,129 @@ public class CarInfo extends DataEntity<CarInfo> {
 	private String fiveShoeId;		// 5#轮胎主要参数
 	private String sixShoeId;		// 6#轮胎主要参数
 	
+	
+	//临时
+	private List<CharterInfo> charterInfos;
+	private EngineInfo engineInfo;//发动机
+	private MainDynamoInfo mainDynamoInfo;//主发动机
+	private LeftMotorWheelInfo leftMonotrwheelInfo;//左侧电动轮主要参数
+	private RightMotorWheelInfo rightMotorWheelInfo;//右侧电动轮主要参数
+	private BoxBucketInfo boxBucketInfo;//箱斗主要参数
+	private OneShoeInfo oneShoeInfo;//1#轮胎主要参数
+	private TwoShoeInfo twoShoeInfo;//2#轮胎主要参数
+	private ThreeShoeInfo threeShoeInfo;//3#轮胎主要参数
+	private FourShoeInfo fourShoeInfo;//4#轮胎主要参数
+	private FiveShoeInfo fiveShoeInfo;//5#轮胎主要参数
+	private SixShoeInfo sixShoeInfo;//6#轮胎主要参数
+	
+	/**
+	 * 向临时对象中添加一条数据
+	 * @param charterInfo
+	 */
+	public void putCharterInfo(CharterInfo charterInfo) {
+		if(null == charterInfos) {
+			charterInfos = new ArrayList<CharterInfo>();
+		}
+		charterInfos.add(charterInfo);
+	}
+	
+	
+	public EngineInfo getEngineInfo() {
+		return engineInfo;
+	}
+
+	public void setEngineInfo(EngineInfo engineInfo) {
+		this.engineInfo = engineInfo;
+	}
+
+	public MainDynamoInfo getMainDynamoInfo() {
+		return mainDynamoInfo;
+	}
+
+	public void setMainDynamoInfo(MainDynamoInfo mainDynamoInfo) {
+		this.mainDynamoInfo = mainDynamoInfo;
+	}
+
+	public LeftMotorWheelInfo getLeftMonotrwheelInfo() {
+		return leftMonotrwheelInfo;
+	}
+
+	public void setLeftMonotrwheelInfo(LeftMotorWheelInfo leftMonotrwheelInfo) {
+		this.leftMonotrwheelInfo = leftMonotrwheelInfo;
+	}
+
+	public RightMotorWheelInfo getRightMotorWheelInfo() {
+		return rightMotorWheelInfo;
+	}
+
+	public void setRightMotorWheelInfo(RightMotorWheelInfo rightMotorWheelInfo) {
+		this.rightMotorWheelInfo = rightMotorWheelInfo;
+	}
+
+	public BoxBucketInfo getBoxBucketInfo() {
+		return boxBucketInfo;
+	}
+
+	public void setBoxBucketInfo(BoxBucketInfo boxBucketInfo) {
+		this.boxBucketInfo = boxBucketInfo;
+	}
+
+	public OneShoeInfo getOneShoeInfo() {
+		return oneShoeInfo;
+	}
+
+	public void setOneShoeInfo(OneShoeInfo oneShoeInfo) {
+		this.oneShoeInfo = oneShoeInfo;
+	}
+
+	public TwoShoeInfo getTwoShoeInfo() {
+		return twoShoeInfo;
+	}
+
+	public void setTwoShoeInfo(TwoShoeInfo twoShoeInfo) {
+		this.twoShoeInfo = twoShoeInfo;
+	}
+
+	public ThreeShoeInfo getThreeShoeInfo() {
+		return threeShoeInfo;
+	}
+
+	public void setThreeShoeInfo(ThreeShoeInfo threeShoeInfo) {
+		this.threeShoeInfo = threeShoeInfo;
+	}
+
+	public FourShoeInfo getFourShoeInfo() {
+		return fourShoeInfo;
+	}
+
+	public void setFourShoeInfo(FourShoeInfo fourShoeInfo) {
+		this.fourShoeInfo = fourShoeInfo;
+	}
+
+	public FiveShoeInfo getFiveShoeInfo() {
+		return fiveShoeInfo;
+	}
+
+	public void setFiveShoeInfo(FiveShoeInfo fiveShoeInfo) {
+		this.fiveShoeInfo = fiveShoeInfo;
+	}
+
+	public SixShoeInfo getSixShoeInfo() {
+		return sixShoeInfo;
+	}
+
+	public void setSixShoeInfo(SixShoeInfo sixShoeInfo) {
+		this.sixShoeInfo = sixShoeInfo;
+	}
+
+	public List<CharterInfo> getCharterInfos() {
+		return charterInfos;
+	}
+
+	public void setCharterInfos(List<CharterInfo> charterInfos) {
+		this.charterInfos = charterInfos;
+	}
+
 	public CarInfo() {
 		super();
 	}

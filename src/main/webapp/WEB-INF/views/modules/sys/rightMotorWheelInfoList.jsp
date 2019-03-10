@@ -36,6 +36,7 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>车辆关联信息</th>
 				<th>总成件序列号</th>
 				<th>已维修次数</th>
 				<th>质保小时</th>
@@ -52,8 +53,11 @@
 		<c:forEach items="${page.list}" var="rightMotorWheelInfo">
 			<tr>
 				<td><a href="${ctx}/sys/rightMotorWheelInfo/form?id=${rightMotorWheelInfo.id}">
-					${rightMotorWheelInfo.zcjxlh}
+					${rightMotorWheelInfo.id}
 				</a></td>
+				<td>
+					${rightMotorWheelInfo.zcjxlh}
+				</td>
 				<td>
 					${rightMotorWheelInfo.ywxcs}
 				</td>
@@ -75,13 +79,10 @@
 				<td>
 					<fmt:formatDate value="${rightMotorWheelInfo.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td>
-					${rightMotorWheelInfo.remarks}
-				</td>
 				<shiro:hasPermission name="sys:rightMotorWheelInfo:edit"><td>
     				<a href="${ctx}/sys/rightMotorWheelInfo/form?id=${rightMotorWheelInfo.id}">修改</a>
-					<a href="${ctx}/sys/rightMotorWheelInfo/delete?id=${rightMotorWheelInfo.id}" onclick="return confirmx('确认要删除该右侧电动轮主要参数吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+<%-- 					<a href="${ctx}/sys/rightMotorWheelInfo/delete?id=${rightMotorWheelInfo.id}" onclick="return confirmx('确认要删除该右侧电动轮主要参数吗？', this.href)">删除</a>
+ --%>				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
 		</tbody>

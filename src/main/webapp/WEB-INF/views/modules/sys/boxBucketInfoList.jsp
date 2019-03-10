@@ -36,6 +36,7 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>车辆关联信息</th>
 				<th>总成件序列号</th>
 				<th>已维修次数</th>
 				<th>质保小时</th>
@@ -44,7 +45,6 @@
 				<th>维修原因</th>
 				<th>本轮投入使用日期</th>
 				<th>更新时间</th>
-				<th>备注信息</th>
 				<shiro:hasPermission name="sys:boxBucketInfo:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -52,8 +52,11 @@
 		<c:forEach items="${page.list}" var="boxBucketInfo">
 			<tr>
 				<td><a href="${ctx}/sys/boxBucketInfo/form?id=${boxBucketInfo.id}">
-					${boxBucketInfo.zcjxlh}
+					${boxBucketInfo.id}
 				</a></td>
+				<td>
+					${boxBucketInfo.zcjxlh}
+				</td>
 				<td>
 					${boxBucketInfo.ywxcs}
 				</td>
@@ -75,13 +78,10 @@
 				<td>
 					<fmt:formatDate value="${boxBucketInfo.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td>
-					${boxBucketInfo.remarks}
-				</td>
 				<shiro:hasPermission name="sys:boxBucketInfo:edit"><td>
     				<a href="${ctx}/sys/boxBucketInfo/form?id=${boxBucketInfo.id}">修改</a>
-					<a href="${ctx}/sys/boxBucketInfo/delete?id=${boxBucketInfo.id}" onclick="return confirmx('确认要删除该箱斗主要参数吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+<%-- 					<a href="${ctx}/sys/boxBucketInfo/delete?id=${boxBucketInfo.id}" onclick="return confirmx('确认要删除该箱斗主要参数吗？', this.href)">删除</a>
+ --%>				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
 		</tbody>

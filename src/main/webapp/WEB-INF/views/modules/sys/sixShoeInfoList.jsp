@@ -36,12 +36,12 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>车辆信息关联号</th>
 				<th>序列号</th>
 				<th>花纹类型</th>
 				<th>轮胎型号</th>
 				<th>修复次数</th>
 				<th>更新时间</th>
-				<th>备注信息</th>
 				<shiro:hasPermission name="sys:sixShoeInfo:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -49,8 +49,11 @@
 		<c:forEach items="${page.list}" var="sixShoeInfo">
 			<tr>
 				<td><a href="${ctx}/sys/sixShoeInfo/form?id=${sixShoeInfo.id}">
-					${sixShoeInfo.xlh}
+					${sixShoeInfo.id}
 				</a></td>
+				<td>
+					${sixShoeInfo.xlh}
+				</td>
 				<td>
 					${sixShoeInfo.hwlx}
 				</td>
@@ -63,12 +66,9 @@
 				<td>
 					<fmt:formatDate value="${sixShoeInfo.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td>
-					${sixShoeInfo.remarks}
-				</td>
 				<shiro:hasPermission name="sys:sixShoeInfo:edit"><td>
     				<a href="${ctx}/sys/sixShoeInfo/form?id=${sixShoeInfo.id}">修改</a>
-					<a href="${ctx}/sys/sixShoeInfo/delete?id=${sixShoeInfo.id}" onclick="return confirmx('确认要删除该6#轮胎主要参数吗？', this.href)">删除</a>
+ 				<%--<a href="${ctx}/sys/sixShoeInfo/delete?id=${sixShoeInfo.id}" onclick="return confirmx('确认要删除该6#轮胎主要参数吗？', this.href)">删除</a> --%>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>

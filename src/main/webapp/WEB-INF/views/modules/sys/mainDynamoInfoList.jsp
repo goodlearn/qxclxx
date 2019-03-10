@@ -36,6 +36,7 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
+				<th>车辆关联信息</th>
 				<th>总成件序列号</th>
 				<th>已维修次数</th>
 				<th>质保小时</th>
@@ -44,7 +45,6 @@
 				<th>维修原因</th>
 				<th>本轮投入使用日期</th>
 				<th>更新时间</th>
-				<th>备注信息</th>
 				<shiro:hasPermission name="sys:mainDynamoInfo:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -52,8 +52,11 @@
 		<c:forEach items="${page.list}" var="mainDynamoInfo">
 			<tr>
 				<td><a href="${ctx}/sys/mainDynamoInfo/form?id=${mainDynamoInfo.id}">
-					${mainDynamoInfo.zcjxlh}
+					${mainDynamoInfo.id}
 				</a></td>
+				<td>
+					${mainDynamoInfo.zcjxlh}
+				</td>
 				<td>
 					${mainDynamoInfo.ywxcs}
 				</td>
@@ -75,13 +78,10 @@
 				<td>
 					<fmt:formatDate value="${mainDynamoInfo.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
-				<td>
-					${mainDynamoInfo.remarks}
-				</td>
 				<shiro:hasPermission name="sys:mainDynamoInfo:edit"><td>
     				<a href="${ctx}/sys/mainDynamoInfo/form?id=${mainDynamoInfo.id}">修改</a>
-					<a href="${ctx}/sys/mainDynamoInfo/delete?id=${mainDynamoInfo.id}" onclick="return confirmx('确认要删除该主发电机主要参数吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+<%-- 					<a href="${ctx}/sys/mainDynamoInfo/delete?id=${mainDynamoInfo.id}" onclick="return confirmx('确认要删除该主发电机主要参数吗？', this.href)">删除</a>
+ --%>				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
 		</tbody>
