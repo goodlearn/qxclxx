@@ -197,7 +197,7 @@ public class ImportExcelCarInfo {
                      }else if(c.getColumnIndex()==1){
                     	 charterInfo.getCarInfo().setSeriaNumber(returnStr);// 编号
                      }else if(c.getColumnIndex()==4){
-                     	engineInfo.setZcjxlh(returnStr);// 总成件序列号
+                    	 charterInfo.setContact(returnStr);;// 总成件序列号
                      }else if(c.getColumnIndex()==3){
                     	 charterInfo.setName(returnStr);// 姓名
                      }else if(c.getColumnIndex()==4){
@@ -251,7 +251,7 @@ public class ImportExcelCarInfo {
         }else if(c.getColumnIndex()==7){
         	engineInfo.setMqsyxs(returnStr);// 目前使用小时
         }else if(c.getColumnIndex()==8){
-        	engineInfo.setWxyy(returnStr);// 维修厂家
+        	engineInfo.setWxcj(returnStr);// 维修厂家
         }else if(c.getColumnIndex()==9){
         	engineInfo.setWxyy(returnStr);// 维修原因
         }else if(c.getColumnIndex()==10){
@@ -265,7 +265,7 @@ public class ImportExcelCarInfo {
         }else if(c.getColumnIndex()==14){
         	mainDynamoInfo.setMqsyxs(returnStr);// 目前使用小时
         }else if(c.getColumnIndex()==15){
-        	mainDynamoInfo.setWxyy(returnStr);// 维修厂家
+        	mainDynamoInfo.setWxcj(returnStr);// 维修厂家
         }else if(c.getColumnIndex()==16){
         	mainDynamoInfo.setWxyy(returnStr);// 维修原因
         }else if(c.getColumnIndex()==17){
@@ -279,7 +279,7 @@ public class ImportExcelCarInfo {
         }else if(c.getColumnIndex()==21){
         	leftMonotrwheelInfo.setMqsyxs(returnStr);// 目前使用小时
         }else if(c.getColumnIndex()==22){
-        	leftMonotrwheelInfo.setWxyy(returnStr);// 维修厂家
+        	leftMonotrwheelInfo.setWxcj(returnStr);// 维修厂家
         }else if(c.getColumnIndex()==23){
         	leftMonotrwheelInfo.setWxyy(returnStr);// 维修原因
         }else if(c.getColumnIndex()==24){
@@ -293,7 +293,7 @@ public class ImportExcelCarInfo {
         }else if(c.getColumnIndex()==28){
         	rightMotorWheelInfo.setMqsyxs(returnStr);// 目前使用小时
         }else if(c.getColumnIndex()==29){
-        	rightMotorWheelInfo.setWxyy(returnStr);// 维修厂家
+        	rightMotorWheelInfo.setWxcj(returnStr);// 维修厂家
         }else if(c.getColumnIndex()==30){
         	rightMotorWheelInfo.setWxyy(returnStr);// 维修原因
         }else if(c.getColumnIndex()==31){
@@ -307,7 +307,7 @@ public class ImportExcelCarInfo {
         }else if(c.getColumnIndex()==35){
         	boxBucketInfo.setMqsyxs(returnStr);// 目前使用小时
         }else if(c.getColumnIndex()==36){
-        	boxBucketInfo.setWxyy(returnStr);// 维修厂家
+        	boxBucketInfo.setWxcj(returnStr);// 维修厂家
         }else if(c.getColumnIndex()==37){
         	boxBucketInfo.setWxyy(returnStr);// 维修原因
         }else if(c.getColumnIndex()==38){

@@ -291,7 +291,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 		
 	}
 	
-	//发动机主要参数
+	//包机负责人
 	@Transactional(readOnly = false)
 	private void processExcelCharterInfo(List<CharterInfo> param) {
 		User user = UserUtils.getUser();
@@ -330,6 +330,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			}
 			origin.setUpdateDate(new Date());
 			engineInfoDao.update(origin);
+			param.setId(origin.getId());
 		}else {
 			//插入操作
 			param.setId(IdGen.uuid());
@@ -366,6 +367,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			}
 			origin.setUpdateDate(new Date());
 			mainDynamoInfoDao.update(origin);
+			param.setId(origin.getId());
 		}else {
 			//插入操作
 			param.setId(IdGen.uuid());
@@ -402,6 +404,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			}
 			origin.setUpdateDate(new Date());
 			leftMotorWheelInfoDao.update(origin);
+			param.setId(origin.getId());
 		}else {
 			//插入操作
 			param.setId(IdGen.uuid());
@@ -438,6 +441,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			}
 			origin.setUpdateDate(new Date());
 			rightMotorWheelInfoDao.update(origin);
+			param.setId(origin.getId());
 		}else {
 			//插入操作
 			param.setId(IdGen.uuid());
@@ -474,6 +478,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			}
 			origin.setUpdateDate(new Date());
 			boxBucketInfoDao.update(origin);
+			param.setId(origin.getId());
 		}else {
 			//插入操作
 			param.setId(IdGen.uuid());
@@ -508,6 +513,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			}
 			origin.setUpdateDate(new Date());
 			oneShoeInfoDao.update(origin);
+			param.setId(origin.getId());
 		}else {
 			//插入操作
 			param.setId(IdGen.uuid());
@@ -542,6 +548,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			}
 			origin.setUpdateDate(new Date());
 			twoShoeInfoDao.update(origin);
+			param.setId(origin.getId());
 		}else {
 			//插入操作
 			param.setId(IdGen.uuid());
@@ -577,6 +584,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			}
 			origin.setUpdateDate(new Date());
 			threeShoeInfoDao.update(origin);
+			param.setId(origin.getId());
 		}else {
 			//插入操作
 			param.setId(IdGen.uuid());
@@ -611,6 +619,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			}
 			origin.setUpdateDate(new Date());
 			fourShoeInfoDao.update(origin);
+			param.setId(origin.getId());
 		}else {
 			//插入操作
 			param.setId(IdGen.uuid());
@@ -646,6 +655,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			}
 			origin.setUpdateDate(new Date());
 			fiveShoeInfoDao.update(origin);
+			param.setId(origin.getId());
 		}else {
 			//插入操作
 			param.setId(IdGen.uuid());
@@ -680,6 +690,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			}
 			origin.setUpdateDate(new Date());
 			sixShoeInfoDao.update(origin);
+			param.setId(origin.getId());
 		}else {
 			//插入操作
 			param.setId(IdGen.uuid());

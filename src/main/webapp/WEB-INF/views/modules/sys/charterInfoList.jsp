@@ -77,8 +77,8 @@
 				</td>
 				<shiro:hasPermission name="sys:charterInfo:edit"><td>
     				<a href="${ctx}/sys/charterInfo/form?id=${charterInfo.id}">修改</a>
-					<a href="${ctx}/sys/charterInfo/delete?id=${charterInfo.id}" onclick="return confirmx('确认要删除该包机负责人信息吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+<%-- 					<a href="${ctx}/sys/charterInfo/delete?id=${charterInfo.id}" onclick="return confirmx('确认要删除该包机负责人信息吗？', this.href)">删除</a>
+ --%>				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
 		</tbody>
