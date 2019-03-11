@@ -89,6 +89,7 @@
 				</td>
 				<shiro:hasPermission name="sys:carInfo:edit"><td>
 					<a href="${ctx}/sys/carInfo/detail?id=${carInfo.id}">查看</a>
+					<a href="/qxclxx/ciwic/qrecord?id=${carInfo.id}"  target="_blank">生成二维码</a>
     				<a href="${ctx}/sys/carInfo/form?id=${carInfo.id}">修改</a>
 					<a href="${ctx}/sys/carInfo/delete?id=${carInfo.id}" onclick="return confirmx('确认要删除该车辆信息吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>

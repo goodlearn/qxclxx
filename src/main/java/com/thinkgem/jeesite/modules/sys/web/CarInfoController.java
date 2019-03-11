@@ -50,6 +50,7 @@ public class CarInfoController extends BaseController {
 		return entity;
 	}
 	
+	
 	/**
 	 * 查看详细信息
 	 * @param carInfo
