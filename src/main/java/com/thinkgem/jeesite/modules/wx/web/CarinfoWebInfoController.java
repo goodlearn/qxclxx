@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.thinkgem.jeesite.modules.sys.entity.CarInfo;
 import com.thinkgem.jeesite.modules.sys.service.CarInfoService;
+import com.thinkgem.jeesite.modules.sys.utils.DictUtils;
 
 
 /**
@@ -33,6 +34,7 @@ public class CarinfoWebInfoController {
 	private final String WX_ERROR = "modules/wxp/500";
 	//二维码页面
 	private final String WX_Q_RECORD = "modules/wxp/personQRcode";
+	private final String WX_Q_RECORD_INFO = "modules/wxp/personQRcodeInfo";
 	protected final String ERR_INFO_NOT_GET = "没有该车辆信息";
 	
 	/**
@@ -47,7 +49,10 @@ public class CarinfoWebInfoController {
 	public String qrecord(HttpServletRequest request, HttpServletResponse response, Model model) {
 		String id = request.getParameter("id");//车型
 		CarInfo result = carInfoService.getDetailInfo(id);
-		model.addAttribute("carInfo", result.getId());
+		//String urlContent = "http://x.xlhtszgh.org/bzr/a/login?id="+result.getId();
+		String label = DictUtils.getDictLabel("requesturl", "qrcodeurl", "https://www.baidu.com/");
+		String urlContent = label + result.getId();
+		model.addAttribute("carInfo", urlContent);
 		return WX_Q_RECORD;
 	}
 	
@@ -62,22 +67,16 @@ public class CarinfoWebInfoController {
 	public String reqPersonQRcode(HttpServletRequest request, HttpServletResponse response,Model model) {
 		String ret = null;
 		try {
+			String id = request.getParameter("id");//车型
+			CarInfo carInfo = carInfoService.get(id);
 			
-			String motorcycleType = request.getParameter("motorcycleType");//车型
-			String seriaNumber = request.getParameter("seriaNumber");//编号
-
-			CarInfo queryCarInfo = new CarInfo();
-			queryCarInfo.setMotorcycleType(motorcycleType);
-			queryCarInfo.setSeriaNumber(seriaNumber);
-			List<CarInfo> carInfos = carInfoService.findList(queryCarInfo);
-			
-			if(null == carInfos || carInfos.size() == 0) {
+			if(null == carInfo) {
 				model.addAttribute("message",ERR_INFO_NOT_GET);
 				return WX_ERROR;
 			}
 			
-			model.addAttribute("carInfo",carInfos.get(0));
-			ret = WX_Q_RECORD;
+			model.addAttribute("carInfo",carInfo);
+			ret = WX_Q_RECORD_INFO;
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
