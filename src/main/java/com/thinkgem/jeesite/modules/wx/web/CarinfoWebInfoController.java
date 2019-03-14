@@ -50,7 +50,7 @@ public class CarinfoWebInfoController {
 		String id = request.getParameter("id");//车型
 		CarInfo result = carInfoService.getDetailInfo(id);
 		//String urlContent = "http://x.xlhtszgh.org/bzr/a/login?id="+result.getId();
-		String label = DictUtils.getDictLabel("requesturl", "qrcodeurl", "https://www.baidu.com/");
+		String label = DictUtils.getDictLabel("requesturl", "qrcodeurl", "https://x.xlhtszgh.org/qxclxx/ciwic/reqCiQRcode?id=");
 		String urlContent = label + result.getId();
 		model.addAttribute("carInfo", urlContent);
 		return WX_Q_RECORD;
