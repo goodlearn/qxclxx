@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -47,26 +48,25 @@ import com.thinkgem.jeesite.modules.sys.entity.TwoShoeInfo;
 * @Description 类描述
 */
 public class ImportExcelCarInfo {
-	private static List<CarInfo> carInfoList = new ArrayList<CarInfo>();
+	private  List<CarInfo> carInfoList = new ArrayList<CarInfo>();
 	
-	private static List<CharterInfo> charterInfos = new ArrayList<CharterInfo>();
+	private  List<CharterInfo> charterInfos = new ArrayList<CharterInfo>();
 
 	
-	 public static List<CarInfo> getCarInfoList() {
+	
+
+	public List<CarInfo> getCarInfoList() {
 		return carInfoList;
 	}
 
-	public static void setCarInfoList(List<CarInfo> carInfoList) {
-		ImportExcelCarInfo.carInfoList = carInfoList;
+	public void setCarInfoList(List<CarInfo> carInfoList) {
+		this.carInfoList = carInfoList;
 	}
 
-	public static List<CharterInfo> getCharterInfos() {
+	public  List<CharterInfo> getCharterInfos() {
 		return charterInfos;
 	}
 
-	public static void setCharterInfos(List<CharterInfo> charterInfos) {
-		ImportExcelCarInfo.charterInfos = charterInfos;
-	}
 
 	/**
      * 读取excel数据
@@ -141,7 +141,6 @@ public class ImportExcelCarInfo {
         for(int i=startReadLine; i<sheet.getLastRowNum()-tailLine+1; i++) {
         	System.out.println(" row is "+i);
             row = sheet.getRow(i);
-            Map<String,String> map = new HashMap<String,String>();
             
             /**
              * 数据对象创建
@@ -196,13 +195,22 @@ public class ImportExcelCarInfo {
                 		 charterInfo.setCharterId(gsbj);// 归属包机
                      }else if(c.getColumnIndex()==1){
                     	 charterInfo.getCarInfo().setSeriaNumber(returnStr);// 编号
-                     }else if(c.getColumnIndex()==4){
-                    	 charterInfo.setContact(returnStr);;// 总成件序列号
+                     }else if(c.getColumnIndex()==2){
+                    	 charterInfo.setProfession(returnStr);;// 工种
                      }else if(c.getColumnIndex()==3){
                     	 charterInfo.setName(returnStr);// 姓名
                      }else if(c.getColumnIndex()==4){
                     	 charterInfo.setContact(returnStr);;// 联系方式
                      }
+                	 
+                	 String pm = charterInfo.getCarInfo().getMotorcycleType();
+            		 String ps = charterInfo.getCarInfo().getSeriaNumber();
+                	 if(null!=pm&&null!=ps) {
+                		String chareterId = findCharterInfo(pm,ps,charterInfos);
+             			if(null!=chareterId) {
+             				charterInfo.setCharterId(chareterId);// 归属包机
+             			} 
+                	 }
                 }
             }
             
@@ -219,7 +227,25 @@ public class ImportExcelCarInfo {
 
     }
     
-
+	//包机负责人中筛选
+	private String findCharterInfo(String pm,String ps,List<CharterInfo> param) {
+		if(null == pm
+				||"".equals(pm)
+					||null == ps
+						||"".equals(ps)
+							||null == param){
+			return null;
+		}
+		for(CharterInfo c : param) {
+			String motorcycleType = c.getCarInfo().getMotorcycleType();		// 车型
+			String seriaNumber = c.getCarInfo().getSeriaNumber();		// 编号
+			if(motorcycleType.equals(pm)
+					&&seriaNumber.equals(ps)) {
+				return c.getCharterId();
+			}
+		}
+		return null;
+	}
     
     private void setData(String returnStr,Cell c,CarInfo carinfo) {
     	EngineInfo engineInfo = carinfo.getEngineInfo();//发动机
@@ -496,8 +522,12 @@ public class ImportExcelCarInfo {
             return cell.getCellFormula() ;
 
         }else if(cell.getCellType() == Cell.CELL_TYPE_NUMERIC){
+        	if(String.valueOf(cell.getNumericCellValue()).indexOf("E")==-1){
+    	        return String.valueOf(cell.getNumericCellValue());
+    	    }else {
+    	        return new DecimalFormat("#").format(cell.getNumericCellValue());
+    	    }
 
-            return String.valueOf(cell.getNumericCellValue());
 
         }
         return "";

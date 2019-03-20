@@ -194,28 +194,14 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 		
 		//先处理包机负责人
 		processExcelCharterInfo(charterInfos);
-		for(CharterInfo ct : charterInfos) {
-			CarInfo querySame = new CarInfo();
-			String motorcycleType = ct.getCarInfo().getMotorcycleType();		// 车型
-			String seriaNumber = ct.getCarInfo().getSeriaNumber();		// 编号
-			querySame.setMotorcycleType(motorcycleType);
-			querySame.setSeriaNumber(seriaNumber);
-			List<CarInfo> results = dao.findList(querySame);
-			if(null!=results&&results.size()>0) {
-				User user = UserUtils.getUser();
-				CarInfo origin = results.get(0);//原来的数据（只有一条如果出现多条数据，那么有问题）
-				origin.setCharterId(ct.getCharterId());
-				if (StringUtils.isNotBlank(user.getId())){
-					origin.setUpdateBy(user); 
-				}
-				origin.setUpdateDate(new Date());
-				dao.update(origin);
-			}
-		}
 		
 		//其余各个参数
 		for(CarInfo carinfo : carinfos) {
 			
+			String chareterId = findCharterInfo(carinfo.getMotorcycleType(),carinfo.getSeriaNumber(),charterInfos);
+			if(null!=chareterId) {
+				carinfo.setCharterId(chareterId);
+			}
 			processExcelEngineInfo(carinfo.getEngineInfo());
 			processExcelMainDynamoInfo(carinfo.getMainDynamoInfo());
 			processExcelMainLeftMotorWheelInfo(carinfo.getLeftMonotrwheelInfo());
@@ -254,7 +240,7 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 				origin.setFourShoeId(carinfo.getFourShoeInfo().getId());	// 4#轮胎主要参数
 				origin.setFiveShoeId(carinfo.getFiveShoeInfo().getId());	// 5#轮胎主要参数
 				origin.setSixShoeId(carinfo.getSixShoeInfo().getId());		// 6#轮胎主要参数
-				
+				origin.setCharterId(carinfo.getCharterId());
 				User user = UserUtils.getUser();
 				if (StringUtils.isNotBlank(user.getId())){
 					origin.setUpdateBy(user); 
@@ -287,24 +273,61 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 				carinfo.setCreateDate(carinfo.getUpdateDate());
 				dao.insert(carinfo);
 			}
+			
 		}
+		
 		
 	}
 	
+	//包机负责人中筛选
+	private String findCharterInfo(String pm,String ps,List<CharterInfo> param) {
+		if(null == pm
+				||"".equals(pm)
+					||null == ps
+						||"".equals(ps)
+							||null == param){
+			return null;
+		}
+		for(CharterInfo c : param) {
+			String motorcycleType = c.getCarInfo().getMotorcycleType();		// 车型
+			String seriaNumber = c.getCarInfo().getSeriaNumber();		// 编号
+			if(motorcycleType.equals(pm)
+					&&seriaNumber.equals(ps)) {
+				return c.getCharterId();
+			}
+		}
+		return null;
+	}
 	//包机负责人
 	@Transactional(readOnly = false)
 	private void processExcelCharterInfo(List<CharterInfo> param) {
 		User user = UserUtils.getUser();
 		for(CharterInfo c : param) {
-			//插入操作
-			c.setId(IdGen.uuid());
-			if (StringUtils.isNotBlank(user.getId())){
-				c.setUpdateBy(user); 
-				c.setCreateBy(user);
+			CarInfo querySame = new CarInfo();
+			String motorcycleType = c.getCarInfo().getMotorcycleType();		// 车型
+			String seriaNumber = c.getCarInfo().getSeriaNumber();		// 编号
+			querySame.setMotorcycleType(motorcycleType);
+			querySame.setSeriaNumber(seriaNumber);
+			List<CarInfo> results = dao.findList(querySame);
+			if(null!=results&&results.size()>0) {
+				CarInfo origin = results.get(0);//原来的数据（只有一条如果出现多条数据，那么有问题）
+				origin.setCharterId(c.getCharterId());
+				if (StringUtils.isNotBlank(user.getId())){
+					origin.setUpdateBy(user); 
+				}
+				origin.setUpdateDate(new Date());
+				dao.update(origin);
+			}else {
+				//插入操作
+				c.setId(IdGen.uuid());
+				if (StringUtils.isNotBlank(user.getId())){
+					c.setUpdateBy(user); 
+					c.setCreateBy(user);
+				}
+				c.setUpdateDate(new Date());
+				c.setCreateDate(c.getUpdateDate());
+				charterInfoDao.insert(c);
 			}
-			c.setUpdateDate(new Date());
-			c.setCreateDate(c.getUpdateDate());
-			charterInfoDao.insert(c);
 		}
 	}
 
