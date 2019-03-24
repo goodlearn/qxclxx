@@ -178,7 +178,7 @@
 					<tr>
 						<td class="tit">序列号</td>
 						<td colspan="2">${carInfo.twoShoeInfo.xlh}</td>
-						<td class="tit">花纹类型</td>
+						<td class="tit">轮胎品牌</td>
 						<td colspan="2">${carInfo.twoShoeInfo.hwlx}</td>
 						<td class="tit">轮胎型号</td>
 						<td colspan="2">${carInfo.twoShoeInfo.ltxh}</td>

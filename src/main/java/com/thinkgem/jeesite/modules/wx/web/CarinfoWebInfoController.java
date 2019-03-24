@@ -68,6 +68,34 @@ public class CarinfoWebInfoController {
 		String ret = null;
 		try {
 			String id = request.getParameter("id");//车型
+			CarInfo carInfo = carInfoService.getDetailInfo(id);
+			
+			if(null == carInfo) {
+				model.addAttribute("message",ERR_INFO_NOT_GET);
+				return WX_ERROR;
+			}
+			
+			model.addAttribute("carInfo",carInfo);
+			ret = WX_Q_RECORD_INFO;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return ret;
+	}
+	
+	
+	/**
+	 * 页面跳转-获取二维码页面
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/testCiQRcode",method=RequestMethod.GET)
+	public String testCiQRcode(HttpServletRequest request, HttpServletResponse response,Model model) {
+		String ret = null;
+		try {
+			String id = request.getParameter("id");//车型
 			CarInfo carInfo = carInfoService.get(id);
 			
 			if(null == carInfo) {
