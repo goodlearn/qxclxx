@@ -398,6 +398,10 @@ public class ImportExcelCarInfo {
         	sixShoeInfo.setXfcs(returnStr);// 修复次数
         }else if(c.getColumnIndex()==68){
         	sixShoeInfo.setSysj(returnStr);// 使用时间
+        }else if(c.getColumnIndex()==69){
+        	carinfo.setKh(returnStr);// 班组口号
+        }else if(c.getColumnIndex()==70){
+        	carinfo.setImgurl(returnStr);// 图片地址
         }
     }
 

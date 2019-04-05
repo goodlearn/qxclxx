@@ -93,9 +93,10 @@
 			<img src="../static/wx/wximages/toptitle.png" width="100%" alt="">
 		</div>
 		<div class="ws-title">班组口号：脚踏实地，百折不挠。</div>
-		<div class="ws-title">班组愿景：班组与公司共成长，不断提升超越自我 。</div>
-		<div class="ws-title">班组使命： 安全环保工作严防死守，设备维修高质高效。</div>
-		<div class="ws-title">班组目标：人员“零违章”，设备“零故障”，作业“零隐患”。</div>
+		<div class="logo">
+			<img src="${carInfo.imgurl}" width="100%" alt="">
+		</div>
+		<div class="ws-title">${carInfo.kh}</div>
 		<table class="car-info" cellspacing="0" cellpadding="0">
 			<tr>
 				<th colspan="2">车辆信息</th>

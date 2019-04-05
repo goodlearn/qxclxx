@@ -240,7 +240,8 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 				origin.setFourShoeId(carinfo.getFourShoeInfo().getId());	// 4#轮胎主要参数
 				origin.setFiveShoeId(carinfo.getFiveShoeInfo().getId());	// 5#轮胎主要参数
 				origin.setSixShoeId(carinfo.getSixShoeInfo().getId());		// 6#轮胎主要参数
-				origin.setCharterId(carinfo.getCharterId());
+				origin.setKh(carinfo.getKh());
+				origin.setImgurl(carinfo.getImgurl());
 				User user = UserUtils.getUser();
 				if (StringUtils.isNotBlank(user.getId())){
 					origin.setUpdateBy(user); 
@@ -293,7 +294,11 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			String seriaNumber = c.getCarInfo().getSeriaNumber();		// 编号
 			if(motorcycleType.equals(pm)
 					&&seriaNumber.equals(ps)) {
-				return c.getCharterId();
+				if(null == c.getCharterId()|| "".equals(c.getCharterId())) {
+					return null;
+				}else {
+					return c.getCharterId();
+				}
 			}
 		}
 		return null;
@@ -310,13 +315,8 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 			querySame.setSeriaNumber(seriaNumber);
 			List<CarInfo> results = dao.findList(querySame);
 			if(null!=results&&results.size()>0) {
-				CarInfo origin = results.get(0);//原来的数据（只有一条如果出现多条数据，那么有问题）
-				origin.setCharterId(c.getCharterId());
-				if (StringUtils.isNotBlank(user.getId())){
-					origin.setUpdateBy(user); 
-				}
-				origin.setUpdateDate(new Date());
-				dao.update(origin);
+				//没必要再设置charterId了
+				c.setCharterId(null);
 			}else {
 				//插入操作
 				c.setId(IdGen.uuid());

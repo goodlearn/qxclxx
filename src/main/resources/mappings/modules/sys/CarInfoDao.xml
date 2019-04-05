@@ -25,6 +25,8 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
+		a.kh AS "kh",
+		a.imgurl AS "imgurl",
 		a.del_flag AS "delFlag"
 	</sql>
 	
@@ -105,6 +107,8 @@
 			update_by,
 			update_date,
 			remarks,
+			kh,
+			imgurl,
 			del_flag
 		) VALUES (
 			#{id},
@@ -129,6 +133,8 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
+			#{kh},
+			#{imgurl},
 			#{delFlag}
 		)
 	</insert>
@@ -153,6 +159,8 @@
 			six_shoe_id = #{sixShoeId},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
+			kh = #{kh},
+			imgurl = #{imgurl},
 			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>

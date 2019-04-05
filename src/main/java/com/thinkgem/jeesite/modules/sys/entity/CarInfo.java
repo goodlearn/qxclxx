@@ -31,6 +31,8 @@ public class CarInfo extends DataEntity<CarInfo> {
 	private String fourShoeId;		// 4#轮胎主要参数
 	private String fiveShoeId;		// 5#轮胎主要参数
 	private String sixShoeId;		// 6#轮胎主要参数
+	private String kh;		// 口号
+	private String imgurl;		// 图片地址
 	
 	
 	//临时
@@ -306,5 +308,27 @@ public class CarInfo extends DataEntity<CarInfo> {
 	public void setSixShoeId(String sixShoeId) {
 		this.sixShoeId = sixShoeId;
 	}
+
+	@Length(min=0, max=255, message="图片地址长度必须介于 0 和 255 之间")
+	public String getImgurl() {
+		return imgurl;
+	}
+
+
+	public void setImgurl(String imgurl) {
+		this.imgurl = imgurl;
+	}
+
+	@Length(min=0, max=255, message="口号长度必须介于 0 和 255 之间")
+	public String getKh() {
+		return kh;
+	}
+
+	
+	public void setKh(String kh) {
+		this.kh = kh;
+	}
+
+	
 	
 }

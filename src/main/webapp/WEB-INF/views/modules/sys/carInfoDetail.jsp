@@ -248,6 +248,15 @@
 						<td colspan="2">${carInfo.sixShoeInfo.sysj}</td>
 					</tr>
 				</table>
+				<legend>其它参数</legend>
+				<table class="table-form">
+				<tr>
+					<td class="tit">班组口号</td>
+					<td colspan="2">${carInfo.kh}</td>
+					<td class="tit">图片地址</td>
+					<td colspan="2"><a href="${carInfo.imgurl}" target="blank">${carInfo.imgurl}</a></td>
+				</tr>
+				</table>
 			</fieldset>
 			<div class="form-actions">
 				<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
