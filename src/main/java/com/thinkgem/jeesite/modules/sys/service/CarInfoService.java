@@ -335,6 +335,21 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 	@Transactional(readOnly = false)
 	private void processExcelEngineInfo(EngineInfo param) {
 		String zcjxlh = param.getZcjxlh();
+		
+		if(null == zcjxlh || "".equals(zcjxlh)) {
+			//插入操作
+			param.setId(IdGen.uuid());
+			User user = UserUtils.getUser();
+			if (StringUtils.isNotBlank(user.getId())){
+				param.setUpdateBy(user); 
+				param.setCreateBy(user);
+			}
+			param.setUpdateDate(new Date());
+			param.setCreateDate(param.getUpdateDate());
+			engineInfoDao.insert(param);
+			return;
+		}
+		
 		EngineInfo query = new EngineInfo();
 		query.setZcjxlh(zcjxlh);
 		List<EngineInfo> results = engineInfoDao.findList(query);
@@ -372,6 +387,21 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 	@Transactional(readOnly = false)
 	private void processExcelMainDynamoInfo(MainDynamoInfo param) {
 		String zcjxlh = param.getZcjxlh();
+		
+		if(null == zcjxlh || "".equals(zcjxlh)) {
+			//插入操作
+			param.setId(IdGen.uuid());
+			User user = UserUtils.getUser();
+			if (StringUtils.isNotBlank(user.getId())){
+				param.setUpdateBy(user); 
+				param.setCreateBy(user);
+			}
+			param.setUpdateDate(new Date());
+			param.setCreateDate(param.getUpdateDate());
+			mainDynamoInfoDao.insert(param);
+			return;
+		}
+		
 		MainDynamoInfo query = new MainDynamoInfo();
 		query.setZcjxlh(zcjxlh);
 		List<MainDynamoInfo> results = mainDynamoInfoDao.findList(query);
@@ -409,6 +439,21 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 	@Transactional(readOnly = false)
 	private void processExcelMainLeftMotorWheelInfo(LeftMotorWheelInfo param) {
 		String zcjxlh = param.getZcjxlh();
+		
+		if(null == zcjxlh || "".equals(zcjxlh)) {
+			//插入操作
+			param.setId(IdGen.uuid());
+			User user = UserUtils.getUser();
+			if (StringUtils.isNotBlank(user.getId())){
+				param.setUpdateBy(user); 
+				param.setCreateBy(user);
+			}
+			param.setUpdateDate(new Date());
+			param.setCreateDate(param.getUpdateDate());
+			leftMotorWheelInfoDao.insert(param);
+			return;
+		}
+		
 		LeftMotorWheelInfo query = new LeftMotorWheelInfo();
 		query.setZcjxlh(zcjxlh);
 		List<LeftMotorWheelInfo> results = leftMotorWheelInfoDao.findList(query);
@@ -446,6 +491,21 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 	@Transactional(readOnly = false)
 	private void processExcelRightMotorWheelInfo(RightMotorWheelInfo param) {
 		String zcjxlh = param.getZcjxlh();
+		
+		if(null == zcjxlh || "".equals(zcjxlh)) {
+			//插入操作
+			param.setId(IdGen.uuid());
+			User user = UserUtils.getUser();
+			if (StringUtils.isNotBlank(user.getId())){
+				param.setUpdateBy(user); 
+				param.setCreateBy(user);
+			}
+			param.setUpdateDate(new Date());
+			param.setCreateDate(param.getUpdateDate());
+			rightMotorWheelInfoDao.insert(param);
+			return;
+		}
+		
 		RightMotorWheelInfo query = new RightMotorWheelInfo();
 		query.setZcjxlh(zcjxlh);
 		List<RightMotorWheelInfo> results = rightMotorWheelInfoDao.findList(query);
@@ -483,6 +543,21 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 	@Transactional(readOnly = false)
 	private void processExcelBoxBucketInfo(BoxBucketInfo param) {
 		String zcjxlh = param.getZcjxlh();
+		if(null == zcjxlh || "".equals(zcjxlh)) {
+			//插入操作
+			param.setId(IdGen.uuid());
+			User user = UserUtils.getUser();
+			if (StringUtils.isNotBlank(user.getId())){
+				param.setUpdateBy(user); 
+				param.setCreateBy(user);
+			}
+			param.setUpdateDate(new Date());
+			param.setCreateDate(param.getUpdateDate());
+			boxBucketInfoDao.insert(param);
+			return;
+		}
+		
+		
 		BoxBucketInfo query = new BoxBucketInfo();
 		query.setZcjxlh(zcjxlh);
 		List<BoxBucketInfo> results = boxBucketInfoDao.findList(query);
@@ -520,6 +595,20 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 	@Transactional(readOnly = false)
 	private void processExcelOneShoeInfo(OneShoeInfo param) {
 		String xlh = param.getXlh();
+		if(null == xlh || "".equals(xlh)) {
+			//插入操作
+			param.setId(IdGen.uuid());
+			User user = UserUtils.getUser();
+			if (StringUtils.isNotBlank(user.getId())){
+				param.setUpdateBy(user); 
+				param.setCreateBy(user);
+			}
+			param.setUpdateDate(new Date());
+			param.setCreateDate(param.getUpdateDate());
+			oneShoeInfoDao.insert(param);
+			return;
+		}
+		
 		OneShoeInfo query = new OneShoeInfo();
 		query.setXlh(xlh);
 		List<OneShoeInfo> results = oneShoeInfoDao.findList(query);
@@ -555,6 +644,21 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 	@Transactional(readOnly = false)
 	private void processExcelTwoShoeInfo(TwoShoeInfo param) {
 		String xlh = param.getXlh();
+		
+		if(null == xlh || "".equals(xlh)) {
+			//插入操作
+			param.setId(IdGen.uuid());
+			User user = UserUtils.getUser();
+			if (StringUtils.isNotBlank(user.getId())){
+				param.setUpdateBy(user); 
+				param.setCreateBy(user);
+			}
+			param.setUpdateDate(new Date());
+			param.setCreateDate(param.getUpdateDate());
+			twoShoeInfoDao.insert(param);
+			return;
+		}
+		
 		TwoShoeInfo query = new TwoShoeInfo();
 		query.setXlh(xlh);
 		List<TwoShoeInfo> results = twoShoeInfoDao.findList(query);
@@ -591,6 +695,21 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 	@Transactional(readOnly = false)
 	private void processExcelThreeShoeInfo(ThreeShoeInfo param) {
 		String xlh = param.getXlh();
+		
+		if(null == xlh || "".equals(xlh)) {
+			//插入操作
+			param.setId(IdGen.uuid());
+			User user = UserUtils.getUser();
+			if (StringUtils.isNotBlank(user.getId())){
+				param.setUpdateBy(user); 
+				param.setCreateBy(user);
+			}
+			param.setUpdateDate(new Date());
+			param.setCreateDate(param.getUpdateDate());
+			threeShoeInfoDao.insert(param);
+			return;
+		}
+		
 		ThreeShoeInfo query = new ThreeShoeInfo();
 		query.setXlh(xlh);
 		List<ThreeShoeInfo> results = threeShoeInfoDao.findList(query);
@@ -626,6 +745,20 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 	@Transactional(readOnly = false)
 	private void processExcelFourShoeInfo(FourShoeInfo param) {
 		String xlh = param.getXlh();
+		if(null == xlh || "".equals(xlh)) {
+			//插入操作
+			param.setId(IdGen.uuid());
+			User user = UserUtils.getUser();
+			if (StringUtils.isNotBlank(user.getId())){
+				param.setUpdateBy(user); 
+				param.setCreateBy(user);
+			}
+			param.setUpdateDate(new Date());
+			param.setCreateDate(param.getUpdateDate());
+			fourShoeInfoDao.insert(param);
+			return;
+		}
+		
 		FourShoeInfo query = new FourShoeInfo();
 		query.setXlh(xlh);
 		List<FourShoeInfo> results = fourShoeInfoDao.findList(query);
@@ -662,6 +795,20 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 	@Transactional(readOnly = false)
 	private void processExcelFiveShoeInfo(FiveShoeInfo param) {
 		String xlh = param.getXlh();
+		if(null == xlh || "".equals(xlh)) {
+			//插入操作
+			param.setId(IdGen.uuid());
+			User user = UserUtils.getUser();
+			if (StringUtils.isNotBlank(user.getId())){
+				param.setUpdateBy(user); 
+				param.setCreateBy(user);
+			}
+			param.setUpdateDate(new Date());
+			param.setCreateDate(param.getUpdateDate());
+			fiveShoeInfoDao.insert(param);
+			return;
+		}
+		
 		FiveShoeInfo query = new FiveShoeInfo();
 		query.setXlh(xlh);
 		List<FiveShoeInfo> results = fiveShoeInfoDao.findList(query);
@@ -697,6 +844,20 @@ public class CarInfoService extends CrudService<CarInfoDao, CarInfo> {
 	@Transactional(readOnly = false)
 	private void processExcelSixShoeInfo(SixShoeInfo param) {
 		String xlh = param.getXlh();
+		if(null == xlh || "".equals(xlh)) {
+			//插入操作
+			param.setId(IdGen.uuid());
+			User user = UserUtils.getUser();
+			if (StringUtils.isNotBlank(user.getId())){
+				param.setUpdateBy(user); 
+				param.setCreateBy(user);
+			}
+			param.setUpdateDate(new Date());
+			param.setCreateDate(param.getUpdateDate());
+			sixShoeInfoDao.insert(param);
+			return;
+		}
+		
 		SixShoeInfo query = new SixShoeInfo();
 		query.setXlh(xlh);
 		List<SixShoeInfo> results = sixShoeInfoDao.findList(query);

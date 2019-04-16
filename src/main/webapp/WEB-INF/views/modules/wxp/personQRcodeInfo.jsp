@@ -92,7 +92,7 @@
 		<div class="logo">
 			<img src="../static/wx/wximages/toptitle.png" width="100%" alt="">
 		</div>
-		<div class="ws-title">班组口号：脚踏实地，百折不挠。</div>
+		<div class="ws-title">汽修车间介绍</div>
 		<div class="logo">
 			<img src="${carInfo.imgurl}" width="100%" alt="">
 		</div>
@@ -317,7 +317,7 @@
 				<td>${carInfo.oneShoeInfo.xlh}</td>
 			</tr>
 			<tr>
-				<td>花纹类型</td>
+				<td>轮胎品牌</td>
 				<td>${carInfo.oneShoeInfo.hwlx}</td>
 			</tr>
 			<tr>
@@ -369,7 +369,7 @@
 				<td>${carInfo.threeShoeInfo.xlh}</td>
 			</tr>
 			<tr>
-				<td>花纹类型</td>
+				<td>轮胎品牌</td>
 				<td>${carInfo.threeShoeInfo.hwlx}</td>
 			</tr>
 			<tr>
@@ -395,7 +395,7 @@
 				<td>${carInfo.fourShoeInfo.xlh}</td>
 			</tr>
 			<tr>
-				<td>花纹类型</td>
+				<td>轮胎品牌</td>
 				<td>${carInfo.fourShoeInfo.hwlx}</td>
 			</tr>
 			<tr>
@@ -421,7 +421,7 @@
 				<td>${carInfo.fiveShoeInfo.xlh}</td>
 			</tr>
 			<tr>
-				<td>花纹类型</td>
+				<td>轮胎品牌</td>
 				<td>${carInfo.fiveShoeInfo.hwlx}</td>
 			</tr>
 			<tr>
@@ -447,7 +447,7 @@
 				<td>${carInfo.sixShoeInfo.xlh}</td>
 			</tr>
 			<tr>
-				<td>花纹类型</td>
+				<td>轮胎品牌</td>
 				<td>${carInfo.sixShoeInfo.hwlx}</td>
 			</tr>
 			<tr>

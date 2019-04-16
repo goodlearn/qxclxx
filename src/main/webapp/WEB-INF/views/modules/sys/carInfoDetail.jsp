@@ -163,7 +163,7 @@
 					<tr>
 						<td class="tit">序列号</td>
 						<td colspan="2">${carInfo.oneShoeInfo.xlh}</td>
-						<td class="tit">花纹类型</td>
+						<td class="tit">轮胎品牌</td>
 						<td colspan="2">${carInfo.oneShoeInfo.hwlx}</td>
 						<td class="tit">轮胎型号</td>
 						<td colspan="2">${carInfo.oneShoeInfo.ltxh}</td>
@@ -193,7 +193,7 @@
 					<tr>
 						<td class="tit">序列号</td>
 						<td colspan="2">${carInfo.threeShoeInfo.xlh}</td>
-						<td class="tit">花纹类型</td>
+						<td class="tit">轮胎品牌</td>
 						<td colspan="2">${carInfo.threeShoeInfo.hwlx}</td>
 						<td class="tit">轮胎型号</td>
 						<td colspan="2">${carInfo.threeShoeInfo.ltxh}</td>
@@ -208,7 +208,7 @@
 					<tr>
 						<td class="tit">序列号</td>
 						<td colspan="2">${carInfo.fourShoeInfo.xlh}</td>
-						<td class="tit">花纹类型</td>
+						<td class="tit">轮胎品牌</td>
 						<td colspan="2">${carInfo.fourShoeInfo.hwlx}</td>
 						<td class="tit">轮胎型号</td>
 						<td colspan="2">${carInfo.fourShoeInfo.ltxh}</td>
@@ -223,7 +223,7 @@
 					<tr>
 						<td class="tit">序列号</td>
 						<td colspan="2">${carInfo.fiveShoeInfo.xlh}</td>
-						<td class="tit">花纹类型</td>
+						<td class="tit">轮胎品牌</td>
 						<td colspan="2">${carInfo.fiveShoeInfo.hwlx}</td>
 						<td class="tit">轮胎型号</td>
 						<td colspan="2">${carInfo.fiveShoeInfo.ltxh}</td>
@@ -238,7 +238,7 @@
 					<tr>
 						<td class="tit">序列号</td>
 						<td colspan="2">${carInfo.sixShoeInfo.xlh}</td>
-						<td class="tit">花纹类型</td>
+						<td class="tit">轮胎品牌</td>
 						<td colspan="2">${carInfo.sixShoeInfo.hwlx}</td>
 						<td class="tit">轮胎型号</td>
 						<td colspan="2">${carInfo.sixShoeInfo.ltxh}</td>

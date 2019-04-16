@@ -40,7 +40,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">花纹类型：</label>
+			<label class="control-label">轮胎品牌：</label>
 			<div class="controls">
 				<form:input path="hwlx" htmlEscape="false" maxlength="100" class="input-xlarge "/>
 			</div>
